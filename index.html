@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dashboard View -->
+    <div id="dashboard-view" class="view active">
+        <div class="app-container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="menu-btn" id="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="lang-toggle-btn" id="lang-toggle-btn" title="Switch Language">
+                    <span id="lang-text">AR</span>
+                </button>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+
+            <!-- Greeting -->
+            <div class="greeting">
+                <h2 id="greeting-text">Hello, User!</h2>
+                <p>Have a nice day!</p>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="tasks">My tasks</button>
+                <button class="nav-tab" data-tab="projects">Project</button>
+                <button class="nav-tab" data-tab="notes">Note</button>
+            </div>
+
+            <!-- Tasks Tab Content -->
+            <div id="tasks-tab-content" class="tab-content active">
+                <!-- Task Summary -->
+                <div class="task-summary">
+                    <div class="summary-header">
+                        <h3>You have <span id="month-task-count">0 tasks</span> this month</h3>
+                    </div>
+                    <div class="today-progress">
+                        <div class="progress-info">
+                            <span id="today-progress-text">Today's Progress: 0%</span>
+                            <span id="today-progress-count">0/0</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="today-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Tasks -->
+                <div class="section-header">
+                    <h3>Today's Tasks</h3>
+                    <button class="add-task-btn-header" id="add-task-btn-dashboard" style="padding: 8px 16px; font-size: 0.9em;">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+
+                <div class="today-tasks" id="today-tasks">
+                    <div class="empty-state">No tasks for today. Add one below!</div>
+                </div>
+            </div>
+
+            <!-- Projects Tab Content -->
+            <div id="projects-tab-content" class="tab-content">
+                <div class="empty-state">Projects feature coming soon!</div>
+            </div>
+
+            <!-- Notes Tab Content -->
+            <div id="notes-tab-content" class="tab-content">
+                <div class="section-header">
+                    <h3>My Notes</h3>
+                    <button class="add-task-btn-header" id="add-note-btn" style="padding: 8px 16px; font-size: 0.9em;">
+                        <i class="fas fa-plus"></i> Add Note
+                    </button>
+                </div>
+                <div class="notes-list" id="notes-list">
+                    <div class="empty-state">No notes yet. Add your first note!</div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <button class="nav-icon active" data-view="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-icon" data-view="timeline">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </button>
+                <button class="nav-icon" id="notifications-btn">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </button>
+                <button class="nav-icon" id="search-btn">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline View -->
+    <div id="timeline-view" class="view">
+        <div class="app-container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="back-btn" id="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="lang-toggle-btn" id="lang-toggle-btn-2" title="Switch Language">
+                    <span id="lang-text-2">AR</span>
+                </button>
+                <button class="search-btn-top" id="search-btn-top">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <!-- Month/Year Header -->
+            <div class="month-header">
+                <h2 id="month-year">Oct, 2024</h2>
+                <button class="add-task-btn-header" id="add-task-btn-timeline">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+
+            <!-- Date Selector -->
+            <div class="date-selector" id="date-selector">
+                <!-- Dates will be rendered here -->
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list-section">
+                <div class="task-list-header">
+                    <h3>Task</h3>
+                    <div class="day-progress-info">
+                        <span id="day-progress-text">Progress: 0%</span>
+                        <span id="day-progress-count">0/0</span>
+                    </div>
+                </div>
+                <div class="progress-bar-container-small">
+                    <div class="progress-bar" id="day-progress-bar"></div>
+                </div>
+                <div class="task-list" id="task-list">
+                    <!-- Tasks will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <button class="nav-icon" data-view="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-icon active" data-view="timeline">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </button>
+                <button class="nav-icon" id="notifications-btn-2">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </button>
+                <button class="nav-icon" id="search-btn-2">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Note Modal -->
+    <div id="note-modal" class="modal">
+        <div class="modal-container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="back-btn" id="close-note-modal">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="lang-toggle-btn" id="lang-toggle-btn-note" title="Switch Language">
+                    <span id="lang-text-note">AR</span>
+                </button>
+                <button class="search-btn-top">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <!-- Modal Title -->
+            <div class="modal-title">
+                <h2>Create New Note</h2>
+            </div>
+
+            <!-- Note Form -->
+            <form id="note-form" class="task-form">
+                <!-- Purple Section -->
+                <div class="form-section purple-section">
+                    <div class="form-group">
+                        <label>Note Title</label>
+                        <input type="text" id="note-title" placeholder="Enter note title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="note-date" required>
+                    </div>
+                </div>
+
+                <!-- White Section -->
+                <div class="form-section white-section">
+                    <div class="form-group">
+                        <label>Alarm Time</label>
+                        <input type="time" id="note-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Note Content</label>
+                        <textarea id="note-content" placeholder="Write your note here..." rows="6" required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="create-task-btn">Create Note</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="back-btn" id="close-modal">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="lang-toggle-btn" id="lang-toggle-btn-3" title="Switch Language">
+                    <span id="lang-text-3">AR</span>
+                </button>
+                <button class="search-btn-top">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <!-- Modal Title -->
+            <div class="modal-title">
+                <h2>Create New Task</h2>
+            </div>
+
+            <!-- Task Form -->
+            <form id="task-form" class="task-form">
+                <!-- Purple Section -->
+                <div class="form-section purple-section">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="task-title" placeholder="Enter task title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="task-date" required>
+                    </div>
+                </div>
+
+                <!-- White Section -->
+                <div class="form-section white-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Start time</label>
+                            <input type="time" id="task-start-time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>End time</label>
+                            <input type="time" id="task-end-time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="task-description" placeholder="Some text here for the description. More Project for the description." rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="category-tags">
+                            <button type="button" class="category-tag" data-category="Meeting">Meeting</button>
+                            <button type="button" class="category-tag" data-category="Marketing">Marketing</button>
+                            <button type="button" class="category-tag" data-category="Production">Production</button>
+                            <button type="button" class="category-tag" data-category="Dev">Dev</button>
+                            <button type="button" class="category-tag" data-category="Dashboard Design">Dashboard Design</button>
+                            <button type="button" class="category-tag" data-category="UI Design">UI Design</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="create-task-btn">Create Task</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
